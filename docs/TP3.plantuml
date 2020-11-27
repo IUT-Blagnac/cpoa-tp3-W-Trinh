@@ -1,20 +1,18 @@
 @startuml
-class PizzaFromageStyleStrasbourg [[java:PizzaFromageStyleStrasbourg]] {
-}
-class Pizza [[java:Pizza]] {
-}
-Pizza <|-- PizzaFromageStyleStrasbourg
-class PizzeriaBrest [[java:PizzeriaBrest]] {
+abstract class Pizzeria [[java:Pizzeria]] {
+	+Pizzeria(PizzaFactory factory)
+	+Pizza commanderPizza(String type)
 	#Pizza creerPizza(String type)
+}
+class PizzaFactory [[java:PizzaFactory]] {
+}
+Pizzeria --> "1" PizzaFactory : factory
+class PizzeriaBrest [[java:PizzeriaBrest]] {
+	+PizzeriaBrest()
 }
 class Pizzeria [[java:Pizzeria]] {
 }
 Pizzeria <|-- PizzeriaBrest
-class PizzaGrecque [[java:PizzaGrecque]] {
-}
-class Pizza [[java:Pizza]] {
-}
-Pizza <|-- PizzaGrecque
 abstract class Pizza [[java:Pizza]] {
 	~String nom
 	~String pate
@@ -26,88 +24,21 @@ abstract class Pizza [[java:Pizza]] {
 	+void emballer()
 	+String getNom()
 }
-class PizzaGrecqueStyleBrest [[java:PizzaGrecqueStyleBrest]] {
-}
-class Pizza [[java:Pizza]] {
-}
-Pizza <|-- PizzaGrecqueStyleBrest
-abstract class Pizzeria [[java:Pizzeria]] {
-	+Pizza commanderPizza(String type)
-	#{abstract}Pizza creerPizza(String type)
-}
-class PizzaFromageStyleBrest [[java:PizzaFromageStyleBrest]] {
-}
-class Pizza [[java:Pizza]] {
-}
-Pizza <|-- PizzaFromageStyleBrest
-class SimpleFabriqueDePizzaStrasbourg [[java:SimpleFabriqueDePizzaStrasbourg]] {
-	-{static}SimpleFabriqueDePizzas instance
-	-SimpleFabriqueDePizzaStrasbourg()
-	+{static}SimpleFabriqueDePizzas getInstance()
-	+Pizza creerPizza(String type)
-}
-class SimpleFabriqueDePizzas [[java:SimpleFabriqueDePizzas]] {
-}
-SimpleFabriqueDePizzas <|-- SimpleFabriqueDePizzaStrasbourg
-class PizzeriaStrasbourg [[java:PizzeriaStrasbourg]] {
-	#Pizza creerPizza(String type)
-}
-class Pizzeria [[java:Pizzeria]] {
-}
-Pizzeria <|-- PizzeriaStrasbourg
-class PizzaFromage [[java:PizzaFromage]] {
-}
-class Pizza [[java:Pizza]] {
-}
-Pizza <|-- PizzaFromage
-class PizzaPoivrons [[java:PizzaPoivrons]] {
-}
-class Pizza [[java:Pizza]] {
-}
-Pizza <|-- PizzaPoivrons
-class SimpleFabriqueDePizzaBrest [[java:SimpleFabriqueDePizzaBrest]] {
-	-{static}SimpleFabriqueDePizzas instance
-	-SimpleFabriqueDePizzaBrest()
-	+{static}SimpleFabriqueDePizzas getInstance()
-	+Pizza creerPizza(String type)
-}
-class SimpleFabriqueDePizzas [[java:SimpleFabriqueDePizzas]] {
-}
-SimpleFabriqueDePizzas <|-- SimpleFabriqueDePizzaBrest
-abstract class SimpleFabriqueDePizzas [[java:SimpleFabriqueDePizzas]] {
-	+{abstract}Pizza creerPizza(String type)
-}
-class PizzaGrecqueStyleStrasbourg [[java:PizzaGrecqueStyleStrasbourg]] {
-}
-class Pizza [[java:Pizza]] {
-}
-Pizza <|-- PizzaGrecqueStyleStrasbourg
 class PizzaPoivronsStyleBrest [[java:PizzaPoivronsStyleBrest]] {
 }
 class Pizza [[java:Pizza]] {
 }
 Pizza <|-- PizzaPoivronsStyleBrest
-class PizzaPoivronsStyleStrasbourg [[java:PizzaPoivronsStyleStrasbourg]] {
+class PizzaGrecqueStyleStrasbourg [[java:PizzaGrecqueStyleStrasbourg]] {
 }
 class Pizza [[java:Pizza]] {
 }
-Pizza <|-- PizzaPoivronsStyleStrasbourg
-abstract class Pizza [[java:Pizza]] {
-	~String nom
-	~String pate
-	~String sauce
-	~ArrayList<String> garnitures
-	+void preparer()
-	+void cuire()
-	+void couper()
-	+void emballer()
-	+String getNom()
-}
-class PizzaFromage [[java:PizzaFromage]] {
+Pizza <|-- PizzaGrecqueStyleStrasbourg
+class PizzaGrecqueStyleBrest [[java:PizzaGrecqueStyleBrest]] {
 }
 class Pizza [[java:Pizza]] {
 }
-Pizza <|-- PizzaFromage
+Pizza <|-- PizzaGrecqueStyleBrest
 class PizzaFromageStyleBrest [[java:PizzaFromageStyleBrest]] {
 }
 class Pizza [[java:Pizza]] {
@@ -118,85 +49,36 @@ class PizzaFromageStyleStrasbourg [[java:PizzaFromageStyleStrasbourg]] {
 class Pizza [[java:Pizza]] {
 }
 Pizza <|-- PizzaFromageStyleStrasbourg
-class PizzaGrecque [[java:PizzaGrecque]] {
+class PizzeriaStrasbourg [[java:PizzeriaStrasbourg]] {
+	+PizzeriaStrasbourg()
 }
-class Pizza [[java:Pizza]] {
+class Pizzeria [[java:Pizzeria]] {
 }
-Pizza <|-- PizzaGrecque
-class PizzaGrecqueStyleBrest [[java:PizzaGrecqueStyleBrest]] {
-}
-class Pizza [[java:Pizza]] {
-}
-Pizza <|-- PizzaGrecqueStyleBrest
-class PizzaGrecqueStyleStrasbourg [[java:PizzaGrecqueStyleStrasbourg]] {
-}
-class Pizza [[java:Pizza]] {
-}
-Pizza <|-- PizzaGrecqueStyleStrasbourg
-class PizzaPoivrons [[java:PizzaPoivrons]] {
-}
-class Pizza [[java:Pizza]] {
-}
-Pizza <|-- PizzaPoivrons
-class PizzaPoivronsStyleBrest [[java:PizzaPoivronsStyleBrest]] {
-}
-class Pizza [[java:Pizza]] {
-}
-Pizza <|-- PizzaPoivronsStyleBrest
+Pizzeria <|-- PizzeriaStrasbourg
 class PizzaPoivronsStyleStrasbourg [[java:PizzaPoivronsStyleStrasbourg]] {
 }
 class Pizza [[java:Pizza]] {
 }
 Pizza <|-- PizzaPoivronsStyleStrasbourg
-abstract class Pizzeria [[java:Pizzeria]] {
-	+Pizza commanderPizza(String type)
+abstract class PizzaFactory [[java:PizzaFactory]] {
 	#{abstract}Pizza creerPizza(String type)
 }
-class PizzeriaBrest [[java:PizzeriaBrest]] {
+class PizzaFactoryBrest [[java:PizzaFactoryBrest]] {
+	-{static}PizzaFactory instance
+	-PizzaFactoryBrest()
+	+{static}PizzaFactory getInstance()
 	#Pizza creerPizza(String type)
 }
-class Pizzeria [[java:Pizzeria]] {
+class PizzaFactory [[java:PizzaFactory]] {
 }
-Pizzeria <|-- PizzeriaBrest
-class PizzeriaStrasbourg [[java:PizzeriaStrasbourg]] {
+PizzaFactory <|-- PizzaFactoryBrest
+class PizzaFactoryStrasbourg [[java:PizzaFactoryStrasbourg]] {
+	-{static}PizzaFactory instance
+	-PizzaFactoryStrasbourg()
+	+{static}PizzaFactory getInstance()
 	#Pizza creerPizza(String type)
 }
-class Pizzeria [[java:Pizzeria]] {
+class PizzaFactory [[java:PizzaFactory]] {
 }
-Pizzeria <|-- PizzeriaStrasbourg
-class SimpleFabriqueDePizzaBrest [[java:SimpleFabriqueDePizzaBrest]] {
-	-{static}SimpleFabriqueDePizzas instance
-	-SimpleFabriqueDePizzaBrest()
-	+{static}SimpleFabriqueDePizzas getInstance()
-	+Pizza creerPizza(String type)
-}
-class SimpleFabriqueDePizzas [[java:SimpleFabriqueDePizzas]] {
-}
-SimpleFabriqueDePizzas <|-- SimpleFabriqueDePizzaBrest
-abstract class SimpleFabriqueDePizzas [[java:SimpleFabriqueDePizzas]] {
-	+{abstract}Pizza creerPizza(String type)
-}
-class SimpleFabriqueDePizzaStrasbourg [[java:SimpleFabriqueDePizzaStrasbourg]] {
-	-{static}SimpleFabriqueDePizzas instance
-	-SimpleFabriqueDePizzaStrasbourg()
-	+{static}SimpleFabriqueDePizzas getInstance()
-	+Pizza creerPizza(String type)
-}
-class SimpleFabriqueDePizzas [[java:SimpleFabriqueDePizzas]] {
-}
-SimpleFabriqueDePizzas <|-- SimpleFabriqueDePizzaStrasbourg
-class PizzaTestDrive [[java:PizzaTestDrive]] {
-	+{static}void main(String[] args)
-}
-class PizzeriaTest [[java:PizzeriaTest]] {
-	+void anOrderedPizzaIsNotNull()
-	+void twoOrderedPizzasAreDifferent()
-}
-class PizzeriaTest [[java:PizzeriaTest]] {
-	+void anOrderedPizzaIsNotNull()
-	+void twoOrderedPizzasAreDifferent()
-}
-class PizzaTestDrive [[java:PizzaTestDrive]] {
-	+{static}void main(String[] args)
-}
+PizzaFactory <|-- PizzaFactoryStrasbourg
 @enduml

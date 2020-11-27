@@ -3,7 +3,11 @@
  * @depend - * - Pizza
  */
 public abstract class Pizzeria {
-
+	public PizzaFactory factory;
+	
+	public Pizzeria(PizzaFactory factory) {
+		this.factory = factory;
+	}
 	/**
 	 * @param type
 	 * @return a Pizza object according to the type
@@ -20,5 +24,7 @@ public abstract class Pizzeria {
 		return pizza;
 	}
 	
-	protected abstract Pizza creerPizza(String type);
+	protected Pizza creerPizza(String type) {
+		return factory.creerPizza(type);
+	}
 }
