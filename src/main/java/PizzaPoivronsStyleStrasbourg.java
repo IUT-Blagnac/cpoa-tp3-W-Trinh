@@ -3,5 +3,7 @@
  * @depend - * - Pizza
  */
 public class PizzaPoivronsStyleStrasbourg extends Pizza {
-
+	public PizzaPoivronsStyleStrasbourg() {
+		this.nom="Pizza Poivrons de Strasbourg";
+	}
 }
