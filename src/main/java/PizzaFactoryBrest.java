@@ -13,13 +13,16 @@ public class PizzaFactoryBrest extends PizzaFactory {
 	@Override
 	protected
 	Pizza creerPizza(String type) {
-		
-		if (type.equals("fromage")) {
+		switch(type){
+		case "fromage" :
 			return new PizzaFromageStyleBrest();
-		} else if (type.equals("grecque")) {
+		case "grecque" :
 			return new PizzaGrecqueStyleBrest();
-		} else {
+		case "poivrons":
 			return new PizzaPoivronsStyleBrest();
+		default : 
+			return new PizzaClassique();
+			
 		}
 	}
 
