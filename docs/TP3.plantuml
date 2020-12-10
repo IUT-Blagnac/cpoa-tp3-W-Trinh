@@ -1,0 +1,105 @@
+@startuml
+abstract class Pizzeria [[java:Pizzeria]] {
+	+Pizzeria(PizzaFactory factory)
+	+Pizza commanderPizza(String type)
+	#Pizza creerPizza(String type)
+}
+class PizzaFactory [[java:PizzaFactory]] {
+}
+Pizzeria --> "1" PizzaFactory : factory
+class PizzaFactoryBrest [[java:PizzaFactoryBrest]] {
+	-{static}PizzaFactory instance
+	-PizzaFactoryBrest()
+	+{static}PizzaFactory getInstance()
+	#Pizza creerPizza(String type)
+}
+class PizzaFactory [[java:PizzaFactory]] {
+}
+PizzaFactory <|-- PizzaFactoryBrest
+class PizzeriaBrest [[java:PizzeriaBrest]] {
+	+PizzeriaBrest()
+}
+class Pizzeria [[java:Pizzeria]] {
+}
+Pizzeria <|-- PizzeriaBrest
+class PizzaClassique [[java:PizzaClassique]] {
+	+PizzaClassique()
+}
+class Pizza [[java:Pizza]] {
+}
+Pizza <|-- PizzaClassique
+class appli [[java:appli]] {
+	+{static}void main(String[] args)
+}
+abstract class Pizza [[java:Pizza]] {
+	~String nom
+	~String pate
+	~String sauce
+	~ArrayList<String> garnitures
+	+void preparer()
+	+void cuire()
+	+void couper()
+	+void emballer()
+	+String getNom()
+}
+class PizzaPoivronsStyleBrest [[java:PizzaPoivronsStyleBrest]] {
+	+PizzaPoivronsStyleBrest()
+}
+class Pizza [[java:Pizza]] {
+}
+Pizza <|-- PizzaPoivronsStyleBrest
+class PizzaGrecqueStyleStrasbourg [[java:PizzaGrecqueStyleStrasbourg]] {
+	+PizzaGrecqueStyleStrasbourg()
+}
+class Pizza [[java:Pizza]] {
+}
+Pizza <|-- PizzaGrecqueStyleStrasbourg
+class PizzaGrecqueStyleBrest [[java:PizzaGrecqueStyleBrest]] {
+	+PizzaGrecqueStyleBrest()
+}
+class Pizza [[java:Pizza]] {
+}
+Pizza <|-- PizzaGrecqueStyleBrest
+class PizzaFromageStyleBrest [[java:PizzaFromageStyleBrest]] {
+	+PizzaFromageStyleBrest()
+}
+class Pizza [[java:Pizza]] {
+}
+Pizza <|-- PizzaFromageStyleBrest
+class PizzaFactoryStrasbourg [[java:PizzaFactoryStrasbourg]] {
+	-{static}PizzaFactory instance
+	-PizzaFactoryStrasbourg()
+	+{static}PizzaFactory getInstance()
+	#Pizza creerPizza(String type)
+}
+class PizzaFactory [[java:PizzaFactory]] {
+}
+PizzaFactory <|-- PizzaFactoryStrasbourg
+class PizzaFromageStyleStrasbourg [[java:PizzaFromageStyleStrasbourg]] {
+	+PizzaFromageStyleStrasbourg()
+}
+class Pizza [[java:Pizza]] {
+}
+Pizza <|-- PizzaFromageStyleStrasbourg
+class PizzeriaStrasbourg [[java:PizzeriaStrasbourg]] {
+	+PizzeriaStrasbourg()
+}
+class Pizzeria [[java:Pizzeria]] {
+}
+Pizzeria <|-- PizzeriaStrasbourg
+class PizzaPoivronsStyleStrasbourg [[java:PizzaPoivronsStyleStrasbourg]] {
+	+PizzaPoivronsStyleStrasbourg()
+}
+class Pizza [[java:Pizza]] {
+}
+Pizza <|-- PizzaPoivronsStyleStrasbourg
+abstract class PizzaFactory [[java:PizzaFactory]] {
+	#{abstract}Pizza creerPizza(String type)
+}
+class PizzeriaTest [[java:PizzeriaTest]] {
+	+void anOrderedPizzaIsNotNull()
+	+void twoOrderedPizzasAreDifferent()
+	+void twoFactoryAreTheSame()
+	+void defaultCommand()
+}
+@enduml

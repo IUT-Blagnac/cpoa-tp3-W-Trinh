@@ -1,0 +1,43 @@
+plugins {
+    // Apply the java-library plugin to add support for Java Library
+    id 'java'
+    id 'application'
+    
+    // PLant Uml plugin
+    id "com.github.roroche.plantuml" version "1.0.2"
+}
+
+repositories {
+    // Use jcenter for resolving dependencies.
+    // You can declare any Maven/Ivy/file repository here.
+    jcenter()
+}
+
+dependencies {
+    // This dependency is used internally, and not exposed to consumers on their own compile classpath.
+    implementation 'com.google.guava:guava:28.2-jre'
+
+    // Use JUnit test framework
+    testImplementation 'junit:junit:4.12'
+}
+
+
+application {
+    // Define the main class for the application.
+    mainClassName = 'appli'
+}
+
+jar {
+    destinationDirectory.set(file("target/"))
+    baseName 'pizzeria'
+
+    manifest { 
+        attributes 'Main-Class': 'appli' 
+    } 
+
+}
+
+classDiagram { // (1)
+    packageName = "tp3" // (2)
+    outputFile = project.file('docs/TP3.plantuml') // (3)
+}
